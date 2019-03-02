@@ -1,0 +1,26 @@
+{
+  "name": "myLIRI",
+  "version": "1.0.0",
+  "description": "Command line node app that uses \"Spotify\", \"Bands in Town\" and \"OMDB\"",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexmukha/myLIRI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexmukha/myLIRI/issues"
+  },
+  "homepage": "https://github.com/alexmukha/myLIRI#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "dotenv": "^6.2.0",
+    "moment": "^2.24.0",
+    "node-spotify-api": "^1.0.7"
+  }
+}
