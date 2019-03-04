@@ -13,14 +13,19 @@ function concert(artist) {
         .then(function (resp) {
             var concerts = resp.data;
             for (var i = 0; i < concerts.length; i++) {
-                if (resp.data[i].venue.country === "United States") {
-                    var dateTime = resp.data[i].datetime.split("T");
+                // console.log(concerts[i].venue);
+                var nius = "";
+                if (concerts[i].venue.country !== "United States") {
+                    nius = "\n(Not in USA)";
+                }
+                    var dateTime = concerts[i].datetime.split("T");
                     var date = moment(dateTime[0], "YYYY-MM-DD").format("MM/DD/YYYY");
                     var time = moment(dateTime[1], "HH:mm:ss").format("LT");
-                    console.log("Venue: " + resp.data[i].venue.name);
-                    console.log("City: " + resp.data[i].venue.city + ", " + resp.data[i].venue.region);
-                    console.log("Date: " + date + ", @ " + time, "\n============================");
-                }
+                    console.log("Venue: " + concerts[i].venue.name);
+                    console.log("City: " + concerts[i].venue.city + ", " + resp.data[i].venue.region+nius);
+                    // console.log(nius);
+                    console.log("Date: " + date + ", @ " + time);
+                    console.log("============================\n");
             }
         })
 };
@@ -47,7 +52,34 @@ function spotSong(song){
     })
 }
 
+function movie(title){
+    if (title === "") {
+        var title1 = "Mr. Nobody";
+    } else {
+        var title1 = title;
+    }
+    var queryURL = "https://www.omdbapi.com/?t=" + title1 + "&y=&plot=short&apikey=trilogy";
+    axios.get(queryURL).then(function(response){
+        var movie = response.data
+        // console.log(response.data);
+       console.log("Title: "+movie.Title);
+        console.log("Released in: "+movie.Year);
+        console.log("IMDB Rating: "+movie.imdbRating);
+        if (movie.Ratings[1] === undefined) {
+            var rating = "Not available";
+        } else {
+            var rating = movie.Ratings[1].Value;
+        }
+        console.log("RT Rating: "+rating);
+        console.log("Country: "+movie.Country);
+        console.log("Language(s): "+movie.Language);
+        console.log("Plot: "+movie.Plot);
+        console.log("Cast members: "+movie.Actors);
+        console.log("============================\n");
 
+    });
+
+}
 
 if (command === "concert-this") {
     // console.log("Concert" + search);
